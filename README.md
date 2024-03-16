@@ -1,4 +1,4 @@
-# zkSNArK-Protocols-Implementation
+# zkSNArK Protocols Implementation
 This Git repository serves as a comprehensive demonstration and implementation of Zero-Knowledge Succinct Non-Interactive Argument of Knowledge (ZKSNARK) protocols using two prominent libraries, Circom and Zokrates. zkSNArK protocols play a vital role in ensuring privacy and integrity in various cryptographic applications by allowing one party to prove to another that a statement is true without revealing any information apart from the validity of the statement itself.
 
 Within this repository, you'll find detailed implementations of zkSNArK protocols applied to a variety of problems, showcasing the versatility and power of these cryptographic techniques. The repository includes demonstrations of the following problems:
