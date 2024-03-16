@@ -1,0 +1,17 @@
+import "hashes/sha256/sha256" as sha256packed;
+
+def main(private u32[96] a) -> u32[8] {
+
+    u32 mut count=0;
+    u32[6][16] mut prov=[[0;16]; 6];
+    for u32 i in 0..6 {
+        for u32 j in 0..16 {
+            prov[i][j]=a[count];
+            count=count+1;
+        }
+
+    }
+
+    u32[8] h = sha256packed(prov);
+    return h;
+}

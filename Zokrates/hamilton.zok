@@ -1,0 +1,69 @@
+// Controllo cla presenza di archi entranti per ogni nodo
+def checkGrafo<N>(u32[N][N] grafo) -> bool {
+    bool mut inh = true;
+
+    // Conteggio degli archi entranti in ogni nodo
+    u32[N] mut occ = [0; N];
+    for u32 i in 0..N {
+        for u32 j in 0..N {
+            occ[j] = grafo[i][j]==1 ? occ[j] +1 : occ[j];
+        }
+    }
+
+    // Controllo che il numero di archi per nodo sia maggiore di 0
+    for u32 i in 0..N {
+        bool flag = occ[i] >= 1 ? true : false;
+        inh=inh && flag;
+    }
+
+    return inh;
+}
+
+// Controllo che ogni arco della soluzione esista all'interno del grafo
+def checkArco<N>(u32[N][N] grafo, u32[N] soluzione) -> bool {
+     bool mut inh = true; 
+
+    u32[N-1] mut occ = [0; N-1];
+    for u32 i in 0..N-1 {
+        occ[i] = grafo[soluzione[i]-1][soluzione[i+1]-1];
+    }
+
+    // Controllo che nella matrice che rappresenta il grafo gli archi della soluzione esistano
+    for u32 i in 0..N-1 {
+        bool flag = occ[i] == 1 ? true : false;
+        inh=inh && flag;
+    }
+
+    return inh;
+}
+
+// Controllo che ogni nodo venga visitato solo una volta
+def checkSol<N>(u32[N] soluzione) -> bool {
+    bool mut inh = true; 
+
+    // Conteggio occorrenze di ogni nodo
+    u32[N] mut occ = [0; N];
+    for u32 i in 0..N {
+        occ[soluzione[i]-1] = occ[soluzione[i]-1] + 1;
+    }
+
+    // Controllo che tutte le occorrenze siano esattamente 1
+    for u32 i in 0..N {
+        bool flag = occ[i] == 1 ? true : false;
+        inh=inh && flag;
+    }
+
+    return inh;
+}
+
+def main(u32[5][5] grafo, private u32[5] soluzione) {
+    
+    // Controllo che ogni nodo abbia almeno un arco entrante
+    assert(checkGrafo(grafo));
+    // Controllo che ogni arco della soluzione esista all'interno del grafo
+    assert(checkArco(grafo,soluzione));
+    // Controllo che la soluzione sia corretta
+    assert(checkSol(soluzione));
+
+    return;
+}

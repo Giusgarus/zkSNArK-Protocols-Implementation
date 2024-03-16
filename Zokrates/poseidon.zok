@@ -1,0 +1,6 @@
+import "hashes/poseidon/poseidon.zok" as poseidon;
+
+def main(private field a) -> field {
+    field h = poseidon([a]);
+    return h;
+}
